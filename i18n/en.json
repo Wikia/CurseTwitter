@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"\t\tBrent Copeland"
+		]
+	},
+	"cursetwitter_description": "Embed Twitter feeds into wiki pages.",
+	"twitter-placeholder-user": "Tweets by @$1",
+	"twitter-placeholder-favorites": "Favorites of @$1",
+	"twitter-placeholder-list": "Favorite Tweets by @$1"
+}
