@@ -22,7 +22,7 @@ $wgExtensionCredits['parserhook'][] = [
 	'descriptionmsg'	=> 'cursetwitter_description',
 	'version'			=> '1.3',
 	'license-name'		=> 'GPL-3.0',
-	'url'				=> 'https://github.com/HydraWiki/CacheBreaker'
+	'url'				=> 'https://github.com/HydraWiki/CurseTwitter'
 ];
 
 /******************************************/
