@@ -18,7 +18,7 @@ class CurseTwitter {
 	 *
 	 * @var		array
 	 */
-	private $attributes = array();
+	private $attributes = [];
 
 	/**
 	 * Placeholder text to display for the Twitter object before loading.
@@ -33,13 +33,15 @@ class CurseTwitter {
 	 * @param string   contents of the twitter tag
 	 */
 	public function __construct($args, $input) {
-		$this->setWidth($args['width']);
-		$this->setHeight($args['height']);
-		$this->setTheme($args['theme']);
+		$this->setWidth(isset($args['width']) ? $args['width'] : 300);
+		$this->setHeight(isset($args['height']) ? $args['height'] : 500);
+		$this->setTheme(isset($args['theme']) ? $args['theme'] : '');
 		$this->setChrome($args);
-		$this->setTweetCount($args['count']);
-		$this->setLinkColor($args['linkcolor']);
-		$this->setBorderColor($args['bordercolor']);
+		if (isset($args['count'])) {
+			$this->setTweetCount($args['count']);
+		}
+		$this->setLinkColor(isset($args['linkcolor']) ? $args['linkcolor'] : 'black');
+		$this->setBorderColor(isset($args['bordercolor']) ? $args['bordercolor'] : 'black');
 		$this->setType($args, $input);
 	}
 
@@ -169,9 +171,9 @@ class CurseTwitter {
 	 * @return	string	$type
 	 */
 	public function setType(&$args, $input) {
-		$type     = $args['type'];
-		$slug     = $args['list'];
-		$widgetid = $args['widgetid'];
+		$type     = isset($args['type']) ? $args['type'] : null;
+		$slug     = isset($args['list']) ? $args['list'] : null;
+		$widgetid = isset($args['widgetid']) ? $args['widgetid'] : null;
 
 		switch($type) {
 		case 'user':

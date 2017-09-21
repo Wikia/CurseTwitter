@@ -12,34 +12,15 @@
  *
  **/
 
-/******************************************/
-/* Credits								  */
-/******************************************/
-$wgExtensionCredits['parserhook'][] = [
-	'path'				=> __FILE__,
-	'name'				=> 'Curse Twitter',
-	'author'			=> ['Wiki Platform Team'],
-	'descriptionmsg'	=> 'cursetwitter_description',
-	'version'			=> '1.3',
-	'license-name'		=> 'GPL-3.0',
-	'url'				=> 'https://github.com/HydraWiki/CurseTwitter'
-];
-
-/******************************************/
-/* Language Strings, Page Aliases, Hooks  */
-/******************************************/
-$extDir = __DIR__;
-$wgResourceModules['ext.curse.twitter'] = [
-	'localBasePath' => __DIR__,
-	'remoteExtPath' => 'CurseTwitter',
-	'styles'        => ['css/ext.curse.twitter.css'],
-	'position'		=> 'top'
-];
-
-$wgExtensionMessagesFiles['CurseTwitter']			= "{$extDir}/CurseTwitter.i18n.php";
-$wgMessagesDirs['CurseTwitter']						= "{$extDir}/i18n";
-
-$wgAutoloadClasses['CurseTwitterHooks']				= "{$extDir}/CurseTwitter.hooks.php";
-$wgAutoloadClasses['CurseTwitter']					= "{$extDir}/classes/CurseTwitter.php";
-
-$wgHooks['ParserFirstCallInit'][]					= 'CurseTwitterHooks::onParserFirstCallInit';
+if ( function_exists( 'wfLoadExtension' ) ) {
+	wfLoadExtension( 'CurseTwitter' );
+	// Keep i18n globals so mergeMessageFileList.php doesn't break
+	$wgMessagesDirs['CurseTwitter'] = __DIR__ . '/i18n';
+	wfWarn(
+		'Deprecated PHP entry point used for CurseTwitter extension. Please use wfLoadExtension instead, ' .
+		'see https://www.mediawiki.org/wiki/Extension_registration for more details.'
+	);
+	return;
+ } else {
+	die( 'This version of the CurseTwitter extension requires MediaWiki 1.25+' );
+}

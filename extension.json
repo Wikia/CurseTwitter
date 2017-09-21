@@ -1,0 +1,36 @@
+{
+	"name": "Curse Twitter",
+	"version": "1.4",
+	"author": [
+		"Wiki Platform Team"
+	],
+	"url": "https://github.com/HydraWiki/CurseTwitter",
+	"descriptionmsg": "cursetwitter_description",
+	"license-name": "GPL-3.0",
+	"type": "parserhook",
+	"MessagesDirs": {
+		"CurseTwitter": [
+			"i18n"
+		]
+	},
+	"AutoloadClasses": {
+		"CurseTwitterHooks": "CurseTwitter.hooks.php",
+		"CurseTwitter": "classes/CurseTwitter.php"
+	},
+	"ResourceModules": {
+		"ext.curse.twitter": {
+			"styles": [
+				"css/ext.curse.twitter.css"
+			],
+			"position": "top"
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteExtPath": "CurseTwitter"
+	},
+	"Hooks": {
+		"ParserFirstCallInit": "CurseTwitterHooks::onParserFirstCallInit"
+	},
+	"manifest_version": 2
+}
