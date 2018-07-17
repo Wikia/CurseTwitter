@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"\t\tBrent Copeland"
+		]
+	},
+	"cursetwitter_description": "Umożliwia osadzanie widżetów Twittera na stronach wiki.",
+	"twitter-placeholder-user": "Tweety użytkownika @$1",
+	"twitter-placeholder-favorites": "Ulubione @$1",
+	"twitter-placeholder-list": "Ulubione tweety użytkownika @$1"
+}
