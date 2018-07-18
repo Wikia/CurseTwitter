@@ -184,7 +184,7 @@ class CurseTwitter {
 			}
 			$this->attributes['data-widget-id'] = $widgetid;
 			$this->attributes['data-screen-name'] = $input;
-			$this->attributes['href'] = 'http://twitter.com/'.$input;
+			$this->attributes['href'] = 'https://twitter.com/'.$input;
 			$this->placeholderText = wfMessage('twitter-placeholder-user', $input)->text();
 			break;
 
@@ -194,7 +194,7 @@ class CurseTwitter {
 			}
 			$this->attributes['data-widget-id'] = $widgetid;
 			$this->attributes['data-favorites-screen-name'] = $input;
-			$this->attributes['href'] = 'http://twitter.com/'.$input.'/favorites';
+			$this->attributes['href'] = 'https://twitter.com/'.$input.'/favorites';
 			$this->placeholderText = wfMessage('twitter-placeholder-favorites', $input)->text();
 			break;
 
@@ -205,7 +205,7 @@ class CurseTwitter {
 			$this->attributes['data-widget-id'] = $widgetid;
 			$this->attributes['data-list-owner-screen-name'] = $input;
 			$this->attributes['data-list-slug'] = $slug;
-			$this->attributes['href'] = 'http://twitter.com/'.$input.'/'.$slug;
+			$this->attributes['href'] = 'https://twitter.com/'.$input.'/'.$slug;
 			$this->placeholderText = wfMessage('twitter-placeholder-list', $input)->text();
 			break;
 
@@ -242,11 +242,12 @@ class CurseTwitter {
 	}
 
 	/**
-	 * Returns the html <script> fragment to load twitter feeds onto a page
+	 * Returns the html <script> fragment to load twitter feeds onto a page.
+	 *
 	 * @access public
 	 * @return string
 	 */
 	static public function getScriptTag() {
-		return '<script>window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));</script>';
+		return '<script type="text/javascript">window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));</script>';
 	}
 }
