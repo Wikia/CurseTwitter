@@ -2,12 +2,15 @@
 	"name": "Curse Twitter",
 	"version": "1.4.1",
 	"author": [
-		"Wiki Platform Team"
+		"Hydra Wiki Platform Team"
 	],
-	"url": "https://github.com/HydraWiki/CurseTwitter",
+	"url": "https://gitlab.com/HydraWiki/extensions/CurseTwitter",
 	"descriptionmsg": "cursetwitter_description",
-	"license-name": "GPL-3.0",
+	"license-name": "GPL-3.0-only",
 	"type": "parserhook",
+	"requires": {
+		"MediaWiki": ">= 1.29.0"
+	},
 	"MessagesDirs": {
 		"CurseTwitter": [
 			"i18n"
