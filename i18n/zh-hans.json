@@ -1,0 +1,12 @@
+{
+	"@metadata": {
+		"authors": [
+			"\t\tBrent Copeland",
+			"Dianliang233"
+		]
+	},
+	"cursetwitter_description": "将Twitter信息流嵌入维基页面。",
+	"twitter-placeholder-user": "@$1 的Tweet",
+	"twitter-placeholder-favorites": "@$1 的最喜爱的Tweet",
+	"twitter-placeholder-list": "@$1 的被喜爱的Tweet"
+}
