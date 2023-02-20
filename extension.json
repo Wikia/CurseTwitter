@@ -32,8 +32,13 @@
 		"localBasePath": "",
 		"remoteExtPath": "CurseTwitter"
 	},
+	"HookHandlers": {
+		"main": {
+			"class": "CurseTwitterHooks"
+		}
+	},
 	"Hooks": {
-		"ParserFirstCallInit": "CurseTwitterHooks::onParserFirstCallInit"
+		"ParserFirstCallInit": "main"
 	},
 	"manifest_version": 2
 }

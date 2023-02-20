@@ -1,4 +1,7 @@
 <?php
+
+use MediaWiki\Hook\ParserFirstCallInitHook;
+
 /**
  * Curse Inc.
  * Curse Twitter
@@ -12,29 +15,26 @@
  *
  **/
 
-class CurseTwitterHooks {
+class CurseTwitterHooks implements ParserFirstCallInitHook {
 	/**
 	 * Sets up this extensions parser functions.
 	 *
 	 * @access	public
-	 * @param	object	Parser object passed as a reference.
-	 * @return	boolean true
+	 * @param	object $parser Parser object passed as a reference.
 	 */
-	static public function onParserFirstCallInit(Parser &$parser) {
-		$parser->setHook("twitterfeed", "CurseTwitterHooks::embedTwitter");
-
-		return true;
+	public function onParserFirstCallInit($parser): void {
+		$parser->setHook("twitterfeed", [ $this, 'embedTwitter' ]);
 	}
 
 	/**
 	 * Call proper embed data
 	 *
 	 * @access public
-	 * @param string input
-	 * @param array args
-	 * @return string HTML
+	 * @param string $input input
+	 * @param array $args args
+	 * @return array HTML
 	 */
-	static public function embedTwitter($input, array $args, Parser $parser, PPFrame $frame) {
+	public function embedTwitter($input, array $args, Parser $parser, PPFrame $frame) {
 		$input = $parser->recursiveTagParse($input, $frame);
 		$twitter = new CurseTwitter($args, $input);
 		$parser->getOutput()->addModuleStyles(['ext.curse.twitter']);
