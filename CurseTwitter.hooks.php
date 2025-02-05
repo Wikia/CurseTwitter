@@ -34,7 +34,8 @@ class CurseTwitterHooks implements ParserFirstCallInitHook {
 	 * @param array $args args
 	 * @return array HTML
 	 */
-	public function embedTwitter($input, array $args, Parser $parser, PPFrame $frame) {
+	public function embedTwitter(string $input, array $args, Parser $parser, PPFrame $frame): array
+    {
 		$input = $parser->recursiveTagParse($input, $frame);
 		$twitter = new CurseTwitter($args, $input);
 		$parser->getOutput()->addModuleStyles(['ext.curse.twitter']);
