@@ -15,44 +15,35 @@
 class CurseTwitter {
 	/**
 	 * Attributes for the Twitter object.
-	 *
-	 * @var		array
 	 */
-	private $attributes = [];
+	private array $attributes = [];
 
 	/**
 	 * Placeholder text to display for the Twitter object before loading.
-	 *
-	 * @var		array
 	 */
-	private $placeholderText = '';
+	private string $placeholderText = '';
 
 	/**
 	 * Constructor
-	 * @param array    attributes provided inside the twitter tag
-	 * @param string   contents of the twitter tag
 	 */
-	public function __construct($args, $input) {
-		$this->setWidth(isset($args['width']) ? $args['width'] : 300);
-		$this->setHeight(isset($args['height']) ? $args['height'] : 500);
-		$this->setTheme(isset($args['theme']) ? $args['theme'] : '');
+	public function __construct(array $args, string $input) {
+		$this->setWidth($args['width'] ?? 300);
+		$this->setHeight($args['height'] ?? 500);
+		$this->setTheme($args['theme'] ?? '');
 		$this->setChrome($args);
 		if (isset($args['count'])) {
 			$this->setTweetCount($args['count']);
 		}
-		$this->setLinkColor(isset($args['linkcolor']) ? $args['linkcolor'] : 'black');
-		$this->setBorderColor(isset($args['bordercolor']) ? $args['bordercolor'] : 'black');
+		$this->setLinkColor($args['linkcolor'] ?? 'black');
+		$this->setBorderColor($args['bordercolor'] ?? 'black');
 		$this->setType($args, $input);
 	}
 
 	/**
 	 * Set the width.
-	 *
-	 * @access	public
-	 * @param	array	User supplied width.
-	 * @return	string	Width
 	 */
-	public function setWidth($width) {
+	public function setWidth(mixed $width): void
+    {
 		$width = intval($width);
 		if (!$width || $width < 180 || $width > 520) {
 			$width = 300;
@@ -63,12 +54,9 @@ class CurseTwitter {
 
 	/**
 	 * Set the height.
-	 *
-	 * @access	public
-	 * @param	array	User supplied height.
-	 * @return	string	Height
 	 */
-	public function setHeight($height) {
+	public function setHeight(mixed $height): void
+    {
 		$height = intval($height);
 		if (!$height || $height < 200) {
 			$height = 500;
@@ -79,12 +67,9 @@ class CurseTwitter {
 
 	/**
 	 * Background Theme Setting
-	 *
-	 * @access	public
-	 * @param	array	Background Theme
-	 * @return	string	$theme
 	 */
-	public function setTheme($background) {
+	public function setTheme($background): void
+    {
 		if ($background) {
 			$this->attributes['data-theme'] = $background;
 		}
@@ -92,12 +77,9 @@ class CurseTwitter {
 
 	/**
 	 * Set link color.
-	 *
-	 * @access	public
-	 * @param	array	Link Color
-	 * @return	string	$links
 	 */
-	public function setLinkColor($linkColor) {
+	public function setLinkColor($linkColor): void
+    {
 		if ($linkColor) {
 			$this->attributes['data-link-color'] = $linkColor;
 		}
@@ -105,12 +87,9 @@ class CurseTwitter {
 
 	/**
 	 * Set border color.
-	 *
-	 * @access	public
-	 * @param	array	Border Color
-	 * @return	string	$borders
 	 */
-	public function setBorderColor($borderColor) {
+	public function setBorderColor($borderColor): void
+    {
 		if ($borderColor) {
 			$this->attributes['data-border-color'] = $borderColor;
 		}
@@ -118,12 +97,9 @@ class CurseTwitter {
 
 	/**
 	 * Check settings for chrome elements.
-	 *
-	 * @access	public
-	 * @param	array	args
-	 * @return	string	$chrome
 	 */
-	public function setChrome(&$args) {
+	public function setChrome(array &$args): void
+    {
 		$chrome = [];
 		if (array_key_exists('noscrollbar', $args)) {
 			$chrome[] = 'noscrollbar';
@@ -150,12 +126,8 @@ class CurseTwitter {
 
 	/**
 	 * Maximum number of tweets to show.
-	 *
-	 * @access	public
-	 * @param	array	Maximum number of tweets.
-	 * @return	string	$tweetcount
 	 */
-	public function setTweetCount($maximum) {
+	public function setTweetCount(mixed $maximum) {
 		$maximum = intval($maximum);
 		if ($maximum) {
 			$this->attributes['data-tweet-limit'] = $maximum;
@@ -164,16 +136,11 @@ class CurseTwitter {
 
 	/**
 	 * Check for type of list.
-	 *
-	 * @access	public
-	 * @param	array	args
-	 * @param	string	$input
-	 * @return	string	$type
 	 */
-	public function setType(&$args, $input) {
-		$type     = isset($args['type']) ? $args['type'] : null;
-		$slug     = isset($args['list']) ? $args['list'] : null;
-		$widgetid = isset($args['widgetid']) ? $args['widgetid'] : null;
+	public function setType(array &$args, string $input) {
+		$type     = $args['type'] ?? null;
+		$slug     = $args['list'] ?? null;
+		$widgetid = $args['widgetid'] ?? null;
 
 		switch($type) {
 		case 'user':
@@ -218,11 +185,8 @@ class CurseTwitter {
 
 	/**
 	 * Generate Twitter Feed Embed
-	 *
-	 * @access	public
-	 * @return	string	HTML
 	 */
-	public function getFeedEmbed() {
+	public function getFeedEmbed(): string {
 		$this->attributes['class'] = 'twitter-timeline';
 		$embed = Html::element('a', $this->attributes, $this->placeholderText);
 
@@ -243,11 +207,9 @@ class CurseTwitter {
 
 	/**
 	 * Returns the html <script> fragment to load twitter feeds onto a page.
-	 *
-	 * @access public
-	 * @return string
 	 */
-	static public function getScriptTag() {
+	static public function getScriptTag(): string
+    {
 		return '<script type="text/javascript">window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return;js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);t._e=[];t.ready=function(f){t._e.push(f);};return t;}(document,"script","twitter-wjs"));</script>';
 	}
 }
