@@ -98,7 +98,7 @@ class CurseTwitter {
 	/**
 	 * Check settings for chrome elements.
 	 */
-	public function setChrome(array &$args): void
+	public function setChrome(array $args): void
     {
 		$chrome = [];
 		if (array_key_exists('noscrollbar', $args)) {
@@ -137,7 +137,7 @@ class CurseTwitter {
 	/**
 	 * Check for type of list.
 	 */
-	public function setType(array &$args, string $input) {
+	public function setType(array $args, string $input) {
 		$type     = $args['type'] ?? null;
 		$slug     = $args['list'] ?? null;
 		$widgetid = $args['widgetid'] ?? null;
