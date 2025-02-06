@@ -191,7 +191,7 @@ class CurseTwitter {
 		$embed = Html::element('a', $this->attributes, $this->placeholderText);
 
 		// check for adding a border of our own when transparent but not noborders
-		if (strstr($this->attributes['data-chrome'], 'transparent') !== false
+		if (str_contains($this->attributes['data-chrome'], 'transparent')
 			&& !empty($this->attributes['data-border-color']) ) {
 			$embed = Html::rawElement('div',
 				[
